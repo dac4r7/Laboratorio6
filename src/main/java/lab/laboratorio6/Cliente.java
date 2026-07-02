@@ -49,11 +49,9 @@ public class Cliente {
             try {
                 opcion = num.nextInt();
 
-                if (!seleccionarMediodeVenta(opcion)) {  //Selecciona el medio de venta y lo valida
-                    System.out.println("Opcion invalida. Debe ser 1, 2 o 3.");
-                } else {
+                if (seleccionarMediodeVenta(opcion)) {  //Selecciona el medio de venta y lo valida
                     ingresovalido = true;
-                }
+                } 
             } catch (InputMismatchException e) {
                 System.out.println("Debe ingresar un numero.");
                 num.nextLine(); // limpia la entrada incorrecta
@@ -126,9 +124,13 @@ public class Cliente {
     
      //Segun la Opcion elegida selecciona un medio de venta
      private boolean seleccionarMediodeVenta(int opcion) {
-        if (opcion < 1 || opcion > 3) {
-            return false;
-        }
+        try{
+         if (opcion < 1 || opcion > 3) {
+            throw new ArithmeticException();}
+         }catch(ArithmeticException ae){
+             System.out.println("Opcion invalida. Debe ser 1, 2 o 3.");
+            return false;}
+        
         switch (opcion) {
             case 1:
                 this.mediodeventa = Venta.telefono ;

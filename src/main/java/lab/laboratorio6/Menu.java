@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Diego Adrian Cesarin
+ * @authors Diego Adrian Cesarin - Camila Ramirez
  */
 public class Menu {
 
@@ -44,7 +44,7 @@ public class Menu {
        System.out.println(" 2. Buscar pedido");   
        System.out.println(" 3. Listar pedidos");   
        System.out.println(" 4. Salir");   
-       System.out.println("==== INGRESE UNA OPCION ====");   
+       System.out.println("===== INGRESE UNA OPCION ====");   
        
        try{
            optionumber = numero.nextInt();       
@@ -69,8 +69,10 @@ public class Menu {
        
         switch (opcion) {
             case 1:
-                pedidoActual = new Pedido();
+                pedidoActual = new Pedido();           
                 this.pedidos.add(pedidoActual);
+                pedidoActual.setNumeroPedido(pedidos.size());
+               
                 break;
             case 2:           
                 pedidoBuscado = buscarPedido(validarNumero());
@@ -97,11 +99,14 @@ public class Menu {
     public Pedido buscarPedido(int numDePedido){
         
         Pedido pedidoABuscar=null;
-         
-       if(numDePedido <= pedidos.size() -1 )
+       try{  
+       if(numDePedido <= pedidos.size()  )
         {
             pedidoABuscar = pedidos.get(numDePedido);
         }
+       }catch(IndexOutOfBoundsException ioe){   //para evitar excepciones al buscar
+           System.out.println("====== NO EXISTE EL PEDIDO ======");
+       }
         return pedidoABuscar;
     }
    // pide ingresar un numero y valida que es un numero , lo retorna 

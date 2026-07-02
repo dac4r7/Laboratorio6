@@ -46,7 +46,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Diego A. Cesarin - Camila Ramirez
+ * @authors Diego A. Cesarin - Camila Ramirez
  */
 public class Run {
 

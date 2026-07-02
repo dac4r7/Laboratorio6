@@ -27,6 +27,7 @@ public class Pedido {
   private List<Pastas> pastas = new ArrayList<>(); //Todas las pastas del pedido 
   private Cliente cliente ;                        //Todos los datos del cliente
   Scanner numero = new Scanner(System.in);
+  private int numeroPedido ;
  
     public Pedido() {
      this.cliente = new Cliente();  //Se crea un cliente al pedido
@@ -69,6 +70,14 @@ public class Pedido {
       
         }while(respuesta);
         return opcion;
+    }
+
+    public void setNumeroPedido(int numeroPedido) {
+        this.numeroPedido = numeroPedido;
+    }
+
+    public int getNumeroPedido() {
+        return numeroPedido;
     }
     
     //Evalua que la seleccion de la pasta este entre los rangos mostrados, 
@@ -124,9 +133,10 @@ public class Pedido {
     }
     
   public void mostrarResumen(){  //Muestra el resumen de los pedidos del cliente
-      System.out.println("CLIENTE : "+cliente.getNombre()+" "+ cliente.getApellido()+ " MEDIO DE VENTA: " +
+      System.out.println("| PEDIDO Nro: " + (this.getNumeroPedido()-1) );
+      System.out.println("| CLIENTE : "+cliente.getNombre()+" | "+ cliente.getApellido()+ " MEDIO DE VENTA: " +
                          cliente.getMediodeventa().toString());
-    System.out.println("============ DETALLE DE COMPRA ============");
+    System.out.println("================ DETALLE DE COMPRA ================");
       for(Pastas p : pastas){
           p.descripcion();
       }
@@ -140,9 +150,9 @@ public class Pedido {
         total += p.obtenerCantidad() * p.getPrecio();
     }
 
-    System.out.println("----------------------------------------");
+    System.out.println("--------------------------------------------");
     System.out.println("|  TOTAL A PAGAR: $" + total);           
-    System.out.println("---------------------------------------");
+    System.out.println("--------------------------------------------");
    }
 
     public Cliente getCliente() {
